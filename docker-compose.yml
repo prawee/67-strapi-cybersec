@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  app:
+    image: prawee/strapi
+    container_name: 67-ced-strapi
+    environment:
+      - DATABASE_CLIENT=postgres
+      - DATABASE_HOST=192.168.64.1
+      - DATABASE_PORT=54321
+      - DATABASE_NAME=prawee
+      - DATABASE_USERNAME=prawee
+      - DATABASE_PASSWORD=1p@ssw0rd
+      - DATABASE_SSL=false
+      - APP_KEYS=xxxlxlxl
+      - JWT_SECRET=xlxlxlx
+      - API_TOKEN_SALT=dkdkdkdkd
+      - ADMIN_JWT_SECRET=xlxlxlxlx
+    ports:
+      - 8080:1337
