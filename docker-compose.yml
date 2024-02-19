@@ -18,6 +18,8 @@ services:
       - ADMIN_JWT_SECRET=${ADMIN_JWT_SECRET}
     ports:
       - 8080:1337
+    depends_on:
+      - db
   db:
     image: postgres:latest
     container_name: ced-db
