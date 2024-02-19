@@ -20,6 +20,7 @@ services:
       - 8080:1337
     depends_on:
       - db
+    restart: always
   db:
     image: postgres:latest
     container_name: ced-db
@@ -29,3 +30,4 @@ services:
       - POSTGRES_DB=${DATABASE_NAME}
     ports:
       - ${DATABASE_PORT}:5432
+    restart: always
