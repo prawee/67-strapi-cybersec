@@ -22,6 +22,7 @@ services:
       - 8080:1337
     depends_on:
       - db
+      - proxy
     restart: always
   db:
     image: postgres:latest
@@ -30,8 +31,16 @@ services:
       - POSTGRES_USER=${DATABASE_USERNAME}
       - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
       - POSTGRES_DB=${DATABASE_NAME}
-    # ports:
-    #   - ${DATABASE_PORT}:5432
+    ports:
+      - ${DATABASE_PORT}:5432
     restart: always
     volumes:
       - ./database/data:/var/lib/postgresql/data
+  proxy:
+    container_name: ced-web-server
+    image: caddy:latest
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
